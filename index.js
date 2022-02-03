@@ -2,23 +2,30 @@ var http = require('http');
 var dt = require('./node_modules/module.js');
 var url = require('url');
 var fs = require('fs');
+const {compileETag} = require("express/lib/utils");
+var adr = 'http://localhost:8050/default.html?year=2017&month=february';
+var q = url.parse(adr, true);
 
-http.createServer(function (req, res) {
+console.log(q.host);
+console.log(q.pathname);
+console.log(q.search);
 
-        fs.rename('mynewfile1.txt', 'myrenamedfile.txt',function (err){
-            if (err) throw err;
-            console.log("file renamed!");
-        })
-
-        }).listen(8050);
-
-
+var qdata = q.query;
+console.log(qdata.month);
 
 
 
 /*
+http.createServer(function (req, res) {
 
 
+
+        }).listen(8050);
+
+ fs.rename('mynewfile1.txt', 'myrenamedfile.txt',function (err){
+            if (err) throw err;
+            console.log("file renamed!");
+        })
 
 
   fs.readFile('demofile1.html', function (err, data){
