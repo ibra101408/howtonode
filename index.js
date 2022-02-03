@@ -1,10 +1,22 @@
 var http = require('http');
-//var dt = require('./node_modules/module.js');
+/*var dt = require('./node_modules/module.js');
 var url = require('url');
 var fs = require('fs');
 var uc = require('upper-case');
 //const {compileETag} = require("express/lib/utils");
-//var adr = 'http://localhost:8050/default.html?year=2017&month=february';
+//var adr = 'http://localhost:8050/default.html?year=2017&month=february';*/
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
+
+var myEventHandler = function (){
+    console.log('I hear a scream!');
+}
+
+eventEmitter.on('scream', myEventHandler);
+
+eventEmitter.emit('scream');
+
+/*
 
 http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
@@ -12,7 +24,7 @@ http.createServer(function (req, res) {
     res.end();
 }).listen(8050);
 
-/*
+
 
 var q = url.parse(req.url, true);
     var filename = "." + q.pathname;
