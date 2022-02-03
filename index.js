@@ -2,11 +2,19 @@ var http = require('http');
 //var dt = require('./node_modules/module.js');
 var url = require('url');
 var fs = require('fs');
+var uc = require('upper-case');
 //const {compileETag} = require("express/lib/utils");
 //var adr = 'http://localhost:8050/default.html?year=2017&month=february';
 
 http.createServer(function (req, res) {
-    var q = url.parse(req.url, true);
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(uc.upperCase("Hello World!"));
+    res.end();
+}).listen(8050);
+
+/*
+
+var q = url.parse(req.url, true);
     var filename = "." + q.pathname;
     fs.readFile(filename, function (err, data){
         if (err){
@@ -17,11 +25,6 @@ http.createServer(function (req, res) {
         res.write(data);
         return res.end();
     });
-}).listen(8050);
-
-/*
-
-
 console.log(q.host);
 console.log(q.pathname);
 console.log(q.search);
